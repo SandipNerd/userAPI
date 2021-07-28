@@ -26,13 +26,12 @@ const UserListScreen = props => {
   const [loading, setLoading] = useState();
 
   useEffect(() => {
-    setLoading(true);
     getUser();
     console.log('li');
-    setLoading(false);
   }, []);
 
   const getUser = async () => {
+    setLoading(true);
     try {
       const res = await fetch('https://jsonplaceholder.typicode.com/users');
       const resData = await res.json();
@@ -41,6 +40,7 @@ const UserListScreen = props => {
     } catch (err) {
       console.log(err);
     }
+    setLoading(false);
   };
 
   const filterUser = user => {
@@ -111,7 +111,7 @@ const UserListScreen = props => {
   if (loading) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator color="black" size="large" />
+        <ActivityIndicator color="#32ccbc" size="large" />
       </View>
     );
   }
